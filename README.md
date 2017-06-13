@@ -19,6 +19,9 @@ Example
 Here is a simple example.
 
 **测试数据**
+```html
+<input type="text" id="test"/>
+```
 ```js
 autocomplete("#test", {
     number: 4,
@@ -41,7 +44,7 @@ autocomplete("#test", {
 
 **ajax请求**
 ```js
-    autocomplete('#vcTitle', {
+    autocomplete('#test', {
         fuzzy: false, 
         number: 6,
         srcData: function(callback){
