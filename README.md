@@ -7,7 +7,7 @@ Install
 -------
 方式一  
 
-* npm install ykAutoComplete  
+* npm install ykautocomplete
  
 方式二  
 
