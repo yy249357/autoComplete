@@ -106,4 +106,13 @@ lineHeight: 30
 width: 200
 ```
 
+**callback(arg1, arg2): 处理返回数据的回调函数**
+
+说明: 参数arg1表示要显示的列表数据, 参数arg2表示存储数据(可以存储普通字符串或json对象, 例如: 列表id等)。
+例:
+```js
+// 获取存储数据
+var storeData = document.querySelector('input').getAttribute('data');
+```
+
 
