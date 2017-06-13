@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1, user-scalable=no">
+<title>Document</title>
+<link rel="stylesheet" href="css/autocomplete.css">
+</head>
+<style>
+input{
+	padding: 0;
+	margin:0;
+	border: 1px solid #999;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	outline: none;
+	text-indent: 4px;
+}
+</style>
+<body>
+<input type="text" id="test"/>
+<script src="js/autocomplete.js"></script>
+<script>
+autocomplete("#test", {
+	number: 4,
+	fuzzy: true,
+	srcData: [
+		'154142',
+		'15413',
+		'1541412',
+		'1541414',
+		'1541414',
+		'789141',
+		'1523989',
+		'2740ags',
+		'apple',
+		'banana',
+		'星际',
+		'agsgs'
+	]
+})
+</script>
+</body>
+</html>

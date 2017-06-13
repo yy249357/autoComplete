@@ -1,0 +1,28 @@
+/*
+* @Author: yankang
+* @Date:   2017-06-07 11:22:10
+* @Last Modified by:   yankang
+* @Last Modified time: 2017-06-09 10:39:07
+*/
+.autocomplete{
+	display: none;
+	position: absolute;
+	margin-top: 31px;
+	width: 90%;
+	min-height: 20px;
+	height: auto;
+	border: 1px solid #ccc;
+	overflow: auto;
+	background: #fff;
+}
+.autocomplete span{
+	display: block;
+	color: #333;
+	font-size: 14px;
+	line-height: 20px;
+	height: 20px;
+	cursor: pointer;
+	text-indent: 4px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
