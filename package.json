@@ -1,5 +1,5 @@
 {
-  "name": "ykdialog",
+  "name": "ykautocomplete",
   "version": "1.0.0",
   "description": "A popover javascript plug-in",
   "main": "index.js",
@@ -8,18 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yy249357/ykDialog.git"
+    "url": "git+https://github.com/yy249357/autoComplete.git"
   },
   "keywords": [
-    "alert",
-    "popover",
-    "popup",
-    "modals"
+    "autoComplete"
   ],
   "author": "yankang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yy249357/ykDialog/issues"
+    "url": "https://github.com/yy249357/autoComplete/issues"
   },
-  "homepage": "https://github.com/yy249357/ykDialog#readme"
+  "homepage": "https://github.com/yy249357/autoComplete#readme"
 }
