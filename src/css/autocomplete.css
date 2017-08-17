@@ -2,9 +2,9 @@
 * @Author: yankang
 * @Date:   2017-06-07 11:22:10
 * @Last Modified by:   yankang
-* @Last Modified time: 2017-06-09 10:39:07
+* @Last Modified time: 2017-08-17 15:49:45
 */
-.autocomplete{
+#autocomplete{
 	display: none;
 	position: absolute;
 	margin-top: 31px;
@@ -14,15 +14,24 @@
 	border: 1px solid #ccc;
 	overflow: auto;
 	background: #fff;
+	z-index: 10000;
 }
-.autocomplete span{
+#autocomplete p{
 	display: block;
 	color: #333;
 	font-size: 14px;
-	line-height: 20px;
-	height: 20px;
+	line-height: 30px;
+	height: 30px;
 	cursor: pointer;
 	text-indent: 4px;
 	text-overflow: ellipsis;
 	overflow: hidden;
+	margin: 0!important;
+	padding: 0;
+}
+.nullResult{
+	color: red!important;
+}
+.nullResult:hover{
+	background: #fff!important;
 }

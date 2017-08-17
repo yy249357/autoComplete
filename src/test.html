@@ -7,6 +7,9 @@
 <link rel="stylesheet" href="css/autocomplete.css">
 </head>
 <style>
+body{
+	height: 800px;
+}
 input{
 	padding: 0;
 	margin:0;
@@ -23,7 +26,7 @@ input{
 <script src="js/autocomplete.js"></script>
 <script>
 autocomplete("#test", {
-	number: 4,
+	number: 6,
 	fuzzy: true,
 	srcData: [
 		'apple',
@@ -31,13 +34,24 @@ autocomplete("#test", {
 		'cherry',
 		'dog',
 		'eat',
+		'eat2',
+		'eat3',
+		'eat442',
 		'frog',
 		'grape',
 		'orange',
 		'lemon',
 		'plum',
-		'peach'
-	]
+		'peach',
+		'sfgs1414aag',
+		'21414sgog新',
+		'天1451089bg',
+		'2bggywq',
+		'gsg98'
+	],
+	ajaxCallback: function(){
+		console.log(14141414)
+	}
 })
 </script>
 </body>
