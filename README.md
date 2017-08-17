@@ -85,6 +85,14 @@ API Document
 number: 10
 ```
 
+**backgroundColor: 选中时当前行的背景色**
+
+说明: 默认值为'#F7F2EB'
+例:
+```
+backgroundColor: '#ccc'
+```
+
 **fuzzy: 是否开启前端模糊查询**
 
 说明: 默认为开启。如果请求的数据是后端已经模糊查询过的,可以关闭。
@@ -107,6 +115,16 @@ lineHeight: 30
 例:
 ```
 width: 200
+```
+
+**ajaxCallback: 查询完成后的回调函数**
+
+说明: 无
+例:
+```js
+ajaxCallback: function(){
+    console.log('hello world!')
+}
 ```
 
 **callback(arg1, arg2): 处理返回数据的回调函数**

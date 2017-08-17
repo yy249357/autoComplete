@@ -1,8 +1,8 @@
 /*
-* @Author: yankang
+* @Author: yankangbg
 * @Date:   2017-06-08 11:49:47
 * @Last Modified by:   yankang
-* @Last Modified time: 2017-08-17 16:28:18
+* @Last Modified time: 2017-08-17 17:50:17
 */
 
 ;(function(window, document){
@@ -104,6 +104,8 @@
 			infoBox.style.display = 'block'
 			var p = infoBox.getElementsByTagName('p')
 			for(var i=0; i<p.length; ++i){
+				p[i].style.lineHeight = config.lineHeight + 'px'
+				p[i].style.height = config.lineHeight + 'px'
 				p[i].addEventListener('mouseover', function(e){
 					this.style.backgroundColor = config.backgroundColor
 				}, false)
@@ -219,13 +221,16 @@
 			        currentDom.style.backgroundColor = config.backgroundColor
 			        ipt.value = currentDom.textContent
 			    }else if(event.keyCode == 13){
-			    	var $target = getChild(infoBox, 'p', currentIndex)
-			    	if($target.className != 'nullResult'){
-			    		ipt.value = $target.textContent
+			    	if(currentIndex != -1){
+			    		var $target = getChild(infoBox, 'p', currentIndex)
+			    		if($target.className != 'nullResult'){
+			    			ipt.value = $target.textContent
+			    		}
+			    		ipt.setAttribute('data', $target.getAttribute('data'))
+			    		config.ajaxCallback()
+			    		infoBox.style.display = 'none'
+			    		currentIndex = -1
 			    	}
-			    	ipt.setAttribute('data', $target.getAttribute('data'))
-			    	config.ajaxCallback()
-			    	infoBox.style.display = 'none'
 			    }
 			}
 		}, false)
