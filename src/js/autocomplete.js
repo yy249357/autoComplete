@@ -2,7 +2,7 @@
 * @Author: yankangbg
 * @Date:   2017-06-08 11:49:47
 * @Last Modified by:   yankang
-* @Last Modified time: 2017-08-17 17:50:17
+* @Last Modified time: 2017-08-18 18:26:13
 */
 
 ;(function(window, document){
@@ -145,24 +145,33 @@
 		ipt.addEventListener('click', function(e){
 			init()
 		}, false)
-
+		var cpLock = false
+		ipt.addEventListener('compositionstart', function(e){
+			cpLock = true
+		}, false)
+		ipt.addEventListener('compositionend', function(e){
+			cpLock = false
+		}, false)
 		ipt.addEventListener('oninput' in ipt? 'input': 'keyup', function(e){
-			var val = ipt.value
-			if(typeof(config.srcData) === 'function'){
-				if(val != ''){
-					config.srcData(function(displayData, storageData){
-						data = displayData
-						store = storageData
-						dataDisplay(data, val)
-					})
+			console.log(cpLock)
+			if (!cpLock) {
+				var val = ipt.value
+				if(typeof(config.srcData) === 'function'){
+					if(val != ''){
+						config.srcData(function(displayData, storageData){
+							data = displayData
+							store = storageData
+							dataDisplay(data, val)
+						})
+					}else{
+						infoBox.innerHTML = ''
+						infoBox.style.display = 'none'
+					}
 				}else{
-					infoBox.innerHTML = ''
-					infoBox.style.display = 'none'
+					data = config.srcData
+					store = ''
+					dataDisplay(data, val)
 				}
-			}else{
-				data = config.srcData
-				store = ''
-				dataDisplay(data, val)
 			}
 		}, false)
 
