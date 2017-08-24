@@ -1,7 +1,15 @@
 autoComplete
 ======
 
-A javascript plug-in for fuzzy query.
+输入框自动提示插件(A javascript plug-in for fuzzy query).
+
+特色
+-------
+1. 支持上下方向键和回车键
+2. 支持npm安装
+3. 提示框样式配置功能强大(支持直接修改css)
+4. 支持ajax请求数据和已有数据两种方式的调用
+5. 不依赖jquery等其它库文件
 
 Install
 -------
@@ -18,7 +26,7 @@ Example
 
 Here is a simple example.
 
-**测试数据**
+**(用法一)已存在数据**
 ```html
 <input type="text" id="test"/>
 ```
@@ -42,7 +50,7 @@ autocomplete("#test", {
 })
 ```
 
-**ajax请求**
+**(用法一)ajax请求数据**
 ```js
     autocomplete('#test', {
         fuzzy: false, 
@@ -79,7 +87,7 @@ API Document
 
 **number: 显示的条数**
 
-说明: 默认显示6条 
+说明: 默认显示6条数据, 多余的数据会自动形成滚动条
 例:
 ```
 number: 10
@@ -87,10 +95,10 @@ number: 10
 
 **backgroundColor: 选中时当前行的背景色**
 
-说明: 默认值为'#F7F2EB'
+说明: 默认值为'#F7F2EB'(淡黄色)
 例:
 ```
-backgroundColor: '#ccc'
+backgroundColor: 'yellowgreen'
 ```
 
 **fuzzy: 是否开启前端模糊查询**
@@ -103,7 +111,7 @@ fuzzy: false
 
 **lineHeight: 列表行高** 
 
-说明: 默认为20px
+说明: 单条数据显示的行高, 默认为20px
 例:
 ```
 lineHeight: 30
@@ -111,7 +119,7 @@ lineHeight: 30
 
 **width: 搜索结果框宽度**
 
-说明: 默认和input输入框宽度相同
+说明: 默认自动和input输入框宽度相同
 例:
 ```
 width: 200
@@ -119,7 +127,7 @@ width: 200
 
 **ajaxCallback: 查询完成后的回调函数**
 
-说明: 无
+说明: 用在查询完成后, 刚选中完数据时的回调
 例:
 ```js
 ajaxCallback: function(){
@@ -129,9 +137,13 @@ ajaxCallback: function(){
 
 **callback(arg1, arg2): 处理返回数据的回调函数**
 
-说明: 参数arg1表示要显示的列表数据, 参数arg2表示存储数据(可以存储普通字符串或json对象, 例如: 列表id等)。
+说明: 必须用, 作用是把数据传入插件函数中。
+参数arg1表示要显示的列表数据, 参数arg2表示存储数据(可以存储普通字符串或json对象, 例如: 列表id等)。
 例:
 ```js
+srcData: function(callback){
+    that.getList('', 'fund_name', callback)
+},
 // 获取存储数据
 var storeData = document.querySelector('input').getAttribute('data');
 ```

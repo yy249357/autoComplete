@@ -22,10 +22,19 @@ input{
 }
 </style>
 <body>
-<input type="text" id="test"/>
+<div style="margin-bottom: 20px">
+	<label for="">用法一:</label>
+	<input type="text" id="test1"/>
+</div>
+
+<div>
+	<label for="">用法二:</label>
+	<input type="text" id="test2"/>
+</div>
+<script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/autocomplete.js"></script>
 <script>
-autocomplete("#test", {
+autocomplete("#test1", {
 	number: 6,
 	fuzzy: true,
 	lineHeight: 24,
@@ -53,7 +62,33 @@ autocomplete("#test", {
 		'周天子'
 	],
 	ajaxCallback: function(){
-		console.log(14141414)
+		console.log('选择成功')
+	}
+})
+
+// 尝试输入"天"
+autocomplete("#test2", {
+	number: 6,
+	fuzzy: true,
+	lineHeight: 24,
+	srcData: function(callback){
+	    var ret = [], storage = []
+	    $.ajax({
+	        type: "get",
+	        url: "./data.json",
+	        dataType: "json",
+	        success: function(res) {
+	            var temp = res.data
+	            for(var i=0; i<temp.length; ++i){
+	                ret.push(temp[i].city)
+	                storage.push(temp[i].name)
+	            }
+	            callback(ret, storage)
+	        }
+	    })
+	},
+	ajaxCallback: function(){
+		alert('选择成功')
 	}
 })
 </script>

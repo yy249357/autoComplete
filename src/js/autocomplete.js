@@ -2,7 +2,7 @@
 * @Author: yankangbg
 * @Date:   2017-06-08 11:49:47
 * @Last Modified by:   yankang
-* @Last Modified time: 2017-08-18 18:26:13
+* @Last Modified time: 2017-08-24 14:44:40
 */
 
 ;(function(window, document){
@@ -48,9 +48,12 @@
 
 		var init = function(){
 			config = _deepCopy(config, defaultConfig)
+			infoBox.id = 'autocomplete'
 			infoBox.style.width = config.width? (config.width + 'px'): (ipt.offsetWidth - parseInt(getStyle(infoBox, 'border-width')) * 2 + 'px')
 			infoBox.style.maxHeight = config.number * config.lineHeight + 'px'
 			infoBox.style.overflow = config.scroll? 'auto': 'hidden'
+			infoBox.style.marginTop = ipt.offsetHeight - parseInt(getStyle(infoBox, 'border-width')) + 'px'
+			infoBox.style.marginLeft = ipt.offsetLeft - ipt.parentNode.offsetLeft + 'px'
 			ipt.setAttribute('autocomplete', 'off')
 		}
 
@@ -69,9 +72,8 @@
 	        if(e && e.preventDefault) {
 	            //火狐的 事件是传进来的e
 	            e.preventDefault();
-	        }
-	            //IE中阻止函数器默认动作的方式
-	        else{
+	        }else{
+	        	//IE中阻止函数器默认动作的方式
 	            //ie 用的是默认的event
 	            event.returnValue = false
 	        }
@@ -140,21 +142,19 @@
 			}
 		}
 
-		infoBox.id = 'autocomplete'
-		ipt.parentNode.insertBefore(infoBox, ipt)
+		ipt.parentNode.insertBefore(infoBox, ipt.parentNode.childNodes[0])
 		ipt.addEventListener('click', function(e){
 			init()
 		}, false)
-		var cpLock = false
-		ipt.addEventListener('compositionstart', function(e){
-			cpLock = true
-		}, false)
-		ipt.addEventListener('compositionend', function(e){
-			cpLock = false
-		}, false)
+		// var cpLock = false
+		// ipt.addEventListener('compositionstart', function(e){
+		// 	cpLock = true
+		// }, false)
+		// ipt.addEventListener('compositionend', function(e){
+		// 	cpLock = false
+		// }, false)
 		ipt.addEventListener('oninput' in ipt? 'input': 'keyup', function(e){
-			console.log(cpLock)
-			if (!cpLock) {
+			// if (!cpLock) {
 				var val = ipt.value
 				if(typeof(config.srcData) === 'function'){
 					if(val != ''){
@@ -172,7 +172,7 @@
 					store = ''
 					dataDisplay(data, val)
 				}
-			}
+			// }
 		}, false)
 
 		infoBox.addEventListener('click', function(e){
@@ -181,6 +181,7 @@
 				ipt.value = $target.textContent
 			}
 			ipt.setAttribute('data', $target.getAttribute('data'))
+			console.log(config.ajaxCallback)
 			config.ajaxCallback()
 			infoBox.style.display = 'none'
 		}, false)
