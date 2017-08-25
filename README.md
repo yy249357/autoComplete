@@ -50,7 +50,7 @@ autocomplete("#test", {
 })
 ```
 
-**(用法一)ajax请求数据**
+**(用法二)ajax请求数据**
 ```js
     autocomplete('#test', {
         fuzzy: false, 
@@ -137,12 +137,25 @@ ajaxCallback: function(){
 
 **callback(arg1, arg2): 处理返回数据的回调函数**
 
-说明: 必须用, 作用是把数据传入插件函数中。
+说明: 此函数放在ajax的success回调函数中, 作用是把数据传入插件函数中。
 参数arg1表示要显示的列表数据, 参数arg2表示存储数据(可以存储普通字符串或json对象, 例如: 列表id等)。
 例:
 ```js
 srcData: function(callback){
-    that.getList('', 'fund_name', callback)
+    var ret = [], storage = []
+    $.ajax({
+        type: "get",
+        url: "./data.json",
+        dataType: "json",
+        success: function(res) {
+            var temp = res.data
+            for(var i=0; i<temp.length; ++i){
+                ret.push(temp[i].city)
+                storage.push(temp[i].name)
+            }
+            callback(ret, storage)
+        }
+    })
 },
 // 获取存储数据
 var storeData = document.querySelector('input').getAttribute('data');
