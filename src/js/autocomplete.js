@@ -2,7 +2,7 @@
 * @Author: yankangbg
 * @Date:   2017-06-08 11:49:47
 * @Last Modified by:   yankang
-* @Last Modified time: 2017-08-24 14:44:40
+* @Last Modified time: 2019-07-26 09:20:01
 */
 
 ;(function(window, document){
@@ -32,8 +32,7 @@
         		if(!obj1.hasOwnProperty(i)){
         			continue
         		}
-        		if(typeof obj1[1] === 'object'){
-        			obj2[i] = (obj[i].constructor === Array)? []: {}
+        		if(Object.prototype.toString.call(obj1[1]) === '[object Object]'){
         			_deepCopty(obj[i], obj[i])
         		}else{
         			obj2[i] = obj1[i]
@@ -47,7 +46,9 @@
 		}
 
 		var init = function(){
+			console.log(config.ajaxCallback.toString())
 			config = _deepCopy(config, defaultConfig)
+			console.log(config.ajaxCallback.toString())
 			infoBox.id = 'autocomplete'
 			infoBox.style.width = config.width? (config.width + 'px'): (ipt.offsetWidth - parseInt(getStyle(infoBox, 'border-width')) * 2 + 'px')
 			infoBox.style.maxHeight = config.number * config.lineHeight + 'px'
@@ -100,7 +101,7 @@
 			}else{
 				count = 1
 				infoBox.innerHTML = '<p class="nullResult">抱歉，找不到相关结果</p>'
-				config.ajaxCallback = function(){}
+				console.log(11)
 			}
 			infoBox.style.height = count * config.lineHeight + 'px'
 			infoBox.style.display = 'block'
@@ -146,33 +147,24 @@
 		ipt.addEventListener('click', function(e){
 			init()
 		}, false)
-		// var cpLock = false
-		// ipt.addEventListener('compositionstart', function(e){
-		// 	cpLock = true
-		// }, false)
-		// ipt.addEventListener('compositionend', function(e){
-		// 	cpLock = false
-		// }, false)
 		ipt.addEventListener('oninput' in ipt? 'input': 'keyup', function(e){
-			// if (!cpLock) {
-				var val = ipt.value
-				if(typeof(config.srcData) === 'function'){
-					if(val != ''){
-						config.srcData(function(displayData, storageData){
-							data = displayData
-							store = storageData
-							dataDisplay(data, val)
-						})
-					}else{
-						infoBox.innerHTML = ''
-						infoBox.style.display = 'none'
-					}
+			var val = ipt.value
+			if(typeof(config.srcData) === 'function'){
+				if(val != ''){
+					config.srcData(function(displayData, storageData){
+						data = displayData
+						store = storageData
+						dataDisplay(data, val)
+					})
 				}else{
-					data = config.srcData
-					store = ''
-					dataDisplay(data, val)
+					infoBox.innerHTML = ''
+					infoBox.style.display = 'none'
 				}
-			// }
+			}else{
+				data = config.srcData
+				store = ''
+				dataDisplay(data, val)
+			}
 		}, false)
 
 		infoBox.addEventListener('click', function(e){
@@ -181,7 +173,9 @@
 				ipt.value = $target.textContent
 			}
 			ipt.setAttribute('data', $target.getAttribute('data'))
-			console.log(config.ajaxCallback)
+			if(infoBox.innerHTML.toString().search(/nullResult/) !== -1){
+				config.ajaxCallback() = function(){}
+			}
 			config.ajaxCallback()
 			infoBox.style.display = 'none'
 		}, false)
