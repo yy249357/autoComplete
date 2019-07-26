@@ -2,7 +2,7 @@
 * @Author: yankangbg
 * @Date:   2017-06-08 11:49:47
 * @Last Modified by:   yankang
-* @Last Modified time: 2019-07-26 09:20:01
+* @Last Modified time: 2019-07-26 09:30:45
 */
 
 ;(function(window, document){
@@ -46,9 +46,7 @@
 		}
 
 		var init = function(){
-			console.log(config.ajaxCallback.toString())
 			config = _deepCopy(config, defaultConfig)
-			console.log(config.ajaxCallback.toString())
 			infoBox.id = 'autocomplete'
 			infoBox.style.width = config.width? (config.width + 'px'): (ipt.offsetWidth - parseInt(getStyle(infoBox, 'border-width')) * 2 + 'px')
 			infoBox.style.maxHeight = config.number * config.lineHeight + 'px'
@@ -101,7 +99,6 @@
 			}else{
 				count = 1
 				infoBox.innerHTML = '<p class="nullResult">抱歉，找不到相关结果</p>'
-				console.log(11)
 			}
 			infoBox.style.height = count * config.lineHeight + 'px'
 			infoBox.style.display = 'block'
